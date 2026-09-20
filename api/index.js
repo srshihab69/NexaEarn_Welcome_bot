@@ -1,5 +1,4 @@
 export default async function handler(req, res) {
-  // Environment Variable থেকে টোকেন নেওয়া
   const BOT_TOKEN = process.env.BOT_TOKEN;
   const TELEGRAM_API = `https://api.telegram.org/bot${BOT_TOKEN}`;
 
@@ -14,21 +13,19 @@ export default async function handler(req, res) {
       const lastName = update.message.from.last_name || '';
       const fullName = `${firstName} ${lastName}`.trim();
 
-      // যদি ইউজার /start কমান্ড দেয়
       if (text === '/start') {
-        // ফিক্সড প্রিমিয়াম স্টাইল মেসেজ
         const welcomeMessage = 
           `<blockquote>👋 <b>Hello, ${fullName}! ❞</b></blockquote>\n\n` +
           `<blockquote>Welcome to <b>NexaEarn (Apex)</b>.\n` +
-          `Choose an app below to get started or use the ☰ menu button anytime. ❞</blockquote>`;
+          `Click the button below to open the app inside Telegram, or check out our support and update channels. ❞</blockquote>`;
 
-        // ইনলাইন বাটন ডিজাইন
+        // ছবির লেআউট অনুযায়ী বাটন সাজানো
         const replyMarkup = {
           inline_keyboard: [
             [
               { 
-                text: '💫 NexGen Platform 2.0', 
-                web_app: { url: 'https://srnxgen.netlify.app' } 
+                text: '🚀 Open App 2.0', 
+                url: 'https://t.me/EarnCash_pro_bot/myapp' 
               }
             ],
             [
@@ -37,14 +34,13 @@ export default async function handler(req, res) {
                 url: 'https://t.me/nexaearn_support' 
               },
               { 
-                text: '✨ Open App 2.0', 
-                url: 'https://t.me/EarnCash_pro_bot/myapp' 
+                text: '📢 Update News', 
+                url: 'https://t.me/your_update_channel' 
               }
             ]
           ]
         };
 
-        // টেলিগ্রামে মেসেজ পাঠানো
         try {
           const response = await fetch(`${TELEGRAM_API}/sendMessage`, {
             method: 'POST',
