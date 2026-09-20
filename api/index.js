@@ -30,19 +30,19 @@ export default async function handler(req, res) {
             inline_keyboard: [
               [
                 { 
-                  text: 'Open App 2.0', 
+                  text: '🚀 Open App 2.0', 
                   url: 'https://t.me/EarnCash_pro_bot/myapp',
                   style: 'primary' // নীল রঙ
                 }
               ],
               [
                 { 
-                  text: 'Support', 
+                  text: '💬 Support', 
                   url: 'https://t.me/nexaearn_support',
                   style: 'success' // সবুজ রঙ
                 },
                 { 
-                  text: 'Update News', 
+                  text: '📢 Update News', 
                   url: 'https://t.me/your_update_channel',
                   style: 'danger' // লাল রঙ
                 }
