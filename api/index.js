@@ -1,47 +1,55 @@
 export default async function handler(req, res) {
-  const BOT_TOKEN = process.env.BOT_TOKEN;
+  const BOT_TOKEN = process.env.BOT_TOKEN; 
+
+  if (!BOT_TOKEN) {
+    console.error("❌ ERROR: BOT_TOKEN is missing in Vercel Environment Variables!");
+    return res.status(500).json({ error: "BOT_TOKEN is missing" });
+  }
+
   const TELEGRAM_API = `https://api.telegram.org/bot${BOT_TOKEN}`;
 
-  if (req.method === 'POST') {
-    const update = req.body;
+  try {
+    if (req.method === 'POST') {
+      const update = req.body;
 
-    if (update && update.message) {
-      const chatId = update.message.chat.id;
-      const text = update.message.text;
-      
-      const firstName = update.message.from.first_name || 'User';
-      const lastName = update.message.from.last_name || '';
-      const fullName = `${firstName} ${lastName}`.trim();
+      if (update && update.message) {
+        const chatId = update.message.chat.id;
+        const text = update.message.text;
+        
+        const firstName = update.message.from.first_name || 'User';
+        const lastName = update.message.from.last_name || '';
+        const fullName = `${firstName} ${lastName}`.trim();
 
-      if (text === '/start') {
-        const welcomeMessage = 
-          `<blockquote>👋 <b>Hello, ${fullName}! ❞</b></blockquote>\n\n` +
-          `<blockquote>Welcome to <b>NexaEarn (Apex)</b>.\n` +
-          `Click the button below to open the app inside Telegram, or check out our support and update channels. ❞</blockquote>`;
+        if (text === '/start') {
+          const welcomeMessage = 
+            `<blockquote>👋 <b>Hello, ${fullName}! ❞</b></blockquote>\n\n` +
+            `<blockquote>Welcome to <b>NexaEarn (Apex)</b>.\n` +
+            `Click the button below to open the app inside Telegram, or check out our support and update channels. ❞</blockquote>`;
 
-        // ছবির লেআউট অনুযায়ী বাটন সাজানো
-        const replyMarkup = {
-          inline_keyboard: [
-            [
-              { 
-                text: '🚀 Open App 2.0', 
-                url: 'https://t.me/EarnCash_pro_bot/myapp' 
-              }
-            ],
-            [
-              { 
-                text: '💬 Support', 
-                url: 'https://t.me/nexaearn_support' 
-              },
-              { 
-                text: '📢 Update News', 
-                url: 'https://t.me/your_update_channel' 
-              }
+          const replyMarkup = {
+            inline_keyboard: [
+              [
+                { 
+                  text: 'Open App 2.0', 
+                  url: 'https://t.me/EarnCash_pro_bot/myapp',
+                  style: 'primary' // নীল রঙ
+                }
+              ],
+              [
+                { 
+                  text: 'Support', 
+                  url: 'https://t.me/nexaearn_support',
+                  style: 'success' // সবুজ রঙ
+                },
+                { 
+                  text: 'Update News', 
+                  url: 'https://t.me/your_update_channel',
+                  style: 'danger' // লাল রঙ
+                }
+              ]
             ]
-          ]
-        };
+          };
 
-        try {
           const response = await fetch(`${TELEGRAM_API}/sendMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -57,13 +65,14 @@ export default async function handler(req, res) {
           if (!result.ok) {
             console.error("Telegram API Error:", result.description);
           }
-        } catch (error) {
-          console.error("Fetch Error:", error);
         }
       }
-    }
 
-    return res.status(200).json({ status: 'success' });
+      return res.status(200).json({ status: 'success' });
+    }
+  } catch (error) {
+    console.error("Fetch Error:", error);
+    return res.status(500).json({ error: error.message });
   }
 
   return res.status(200).json({ message: 'NexGen Bot is running smoothly on Vercel!' });
