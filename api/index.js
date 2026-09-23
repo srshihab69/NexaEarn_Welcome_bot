@@ -31,7 +31,7 @@ export default async function handler(req, res) {
               [
                 { 
                   text: '🚀 Open App 2.0', 
-                  url: 'https://t.me/EarnCash_pro_bot/myapp',
+                  url: 'https://t.me/TG_RX_Admin_bot/Dashboard',
                   style: 'primary' // নীল রঙ
                 }
               ],
