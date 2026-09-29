@@ -32,19 +32,19 @@ export default async function handler(req, res) {
                 { 
                   text: '🚀 Open App 2.0', 
                   url: 'https://t.me/nexaearnbot/earningplatform',
-                  style: 'primary' // নীল রঙ
+                  style: 'primary' 
                 }
               ],
               [
                 { 
                   text: '💬 Support', 
                   url: 'https://t.me/help_center',
-                  style: 'success' // সবুজ রঙ
+                  style: 'success' 
                 },
                 { 
                   text: '📢 Update News', 
                   url: 'https://t.me/nexaearnapex',
-                  style: 'danger' // লাল রঙ
+                  style: 'success' 
                 }
               ]
             ]
@@ -52,7 +52,8 @@ export default async function handler(req, res) {
 
           const response = await fetch(`${TELEGRAM_API}/sendMessage`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/jsnexaearn'          body: JSON.stringify({
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
               chat_id: chatId,
               text: welcomeMessage,
               parse_mode: 'HTML',
@@ -71,7 +72,7 @@ export default async function handler(req, res) {
     }
   } catch (error) {
     console.error("Fetch Error:", error);
-    return res.status(500).json({ error: error.message });
+    return res.status(200).json({ error: error.message });
   }
 
   return res.status(200).json({ message: 'NexGen Bot is running smoothly on Vercel!' });
