@@ -31,7 +31,7 @@ export default async function handler(req, res) {
               [
                 { 
                   text: '🚀 Open App 2.0', 
-                  url: 'https://t.me/nexaearnbot/earningplatform',
+                  url: 'https://t.me/NexaEarnApexBot/EarningPlatform',
                   style: 'primary' 
                 }
               ],
