@@ -24,7 +24,7 @@ export default async function handler(req, res) {
           const welcomeMessage = 
             `👋 <b>Hello, ${fullName}! ❞</b>\n\n` +
             `<blockquote>Welcome to <b>NexaEarn (Apex)</b>.\n` +
-            `Click the button below to open the app inside Telegram, or check out our support and update channels. ❞</blockquote>`;
+            `Click the button below to open the app inside Telegram, or check out our support and update channels.</blockquote>`;
 
           const replyMarkup = {
             inline_keyboard: [
