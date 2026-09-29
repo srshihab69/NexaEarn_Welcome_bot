@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 
         if (text === '/start') {
           const welcomeMessage = 
-            `<blockquote>👋 <b>Hello, ${fullName}! ❞</b></blockquote>\n\n` +
+            `👋 <b>Hello, ${fullName}! ❞</b>\n\n` +
             `<blockquote>Welcome to <b>NexaEarn (Apex)</b>.\n` +
             `Click the button below to open the app inside Telegram, or check out our support and update channels. ❞</blockquote>`;
 
@@ -31,19 +31,19 @@ export default async function handler(req, res) {
               [
                 { 
                   text: '🚀 Open App 2.0', 
-                  url: 'https://t.me/EarnCash_pro_bot/myapp',
+                  url: 'https://t.me/nexaearnbot/earningplatform',
                   style: 'primary' // নীল রঙ
                 }
               ],
               [
                 { 
                   text: '💬 Support', 
-                  url: 'https://t.me/nexaearn_support',
+                  url: 'https://t.me/help_center',
                   style: 'success' // সবুজ রঙ
                 },
                 { 
                   text: '📢 Update News', 
-                  url: 'https://t.me/your_update_channel',
+                  url: 'https://t.me/nexaearnapex',
                   style: 'danger' // লাল রঙ
                 }
               ]
@@ -52,8 +52,7 @@ export default async function handler(req, res) {
 
           const response = await fetch(`${TELEGRAM_API}/sendMessage`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
+            headers: { 'Content-Type': 'application/jsnexaearn'          body: JSON.stringify({
               chat_id: chatId,
               text: welcomeMessage,
               parse_mode: 'HTML',
