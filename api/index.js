@@ -30,7 +30,7 @@ export default async function handler(req, res) {
             inline_keyboard: [
               [
                 { 
-                  text: '✨ Start Earning', 
+                  text: '✨ Start Earning 💰', 
                   url: 'https://t.me/NexaEarnApexBot/EarningPlatform',
                   style: 'primary' 
                 }
