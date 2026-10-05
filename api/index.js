@@ -30,7 +30,7 @@ export default async function handler(req, res) {
             inline_keyboard: [
               [
                 { 
-                  text: '🚀 Open App 2.0', 
+                  text: '✨ Start Earning', 
                   url: 'https://t.me/NexaEarnApexBot/EarningPlatform',
                   style: 'primary' 
                 }
@@ -38,7 +38,7 @@ export default async function handler(req, res) {
               [
                 { 
                   text: '💬 Support', 
-                  url: 'https://t.me/help_center',
+                  url: 'https://t.me/GlobalSupportHQ',
                   style: 'success' 
                 },
                 { 
